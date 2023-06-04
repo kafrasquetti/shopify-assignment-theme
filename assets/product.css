@@ -67,6 +67,64 @@
   background-color: #333;
 }
 
+.rebuy-button {
+  font-size: 12px;
+    line-height: 14px;
+    letter-spacing: .2px;
+    text-decoration-line: underline;
+    padding: 0;
+    background: none!important;
+    color: #000!important;
+    text-align: left;
+    width: auto;
+    padding: 8px 12px!important;
+    border: 1px solid #000;
+    text-decoration: none!important;
+    border-radius: 20px!important;
+    font-weight: 500;
+    transition: all .2s;
+}
+.rebuy-button:hover {
+    color: #fff!important;
+    background: #000!important;
+    transition: all .2s;
+}
+.rebuy-product-title {
+    display: block;
+    font-size: 13px!important;
+    line-height: 19px;
+    font-weight: 500;
+    letter-spacing: .2625px;
+    margin: 0 0 6px;
+}
+ .rebuy-product-price {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: .2625px;
+    text-align: left;
+    color: #000;
+}
+ .product-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Adjust as needed */
+  }
+
+.product-item {
+    flex: 0 0 33.33%; /* Adjust as needed for desired column width */
+    padding: 10px; /* Adjust as needed */
+}
+
+.primary-title {
+    margin-bottom: 32px;
+    font-size: 26px;
+    line-height: 31px;
+    letter-spacing: .2px;
+    font-family: "Above the Beyond Serif";
+}
+
+
 @media only screen and (max-width: 768px) {
   .product__container {
     display: flex;
