@@ -1,0 +1,22 @@
+{% assign upsell_limit = 3 %}
+{% assign upsell_count = 0 %}
+{% assign upsell_products = collections.all.products %}
+<h3 class="primary-title">Frequently bought together</h3>
+<div class="product-row">
+  {% for product in upsell_products %}
+    {% if upsell_count < upsell_limit %}
+      {% for tag in product.tags %}
+        {% if tag contains product_type %}
+          {% assign upsell_count = upsell_count | plus: 1 %}
+          <div class="product-item">
+          <img src="{{ product.featured_image | img_url: 'small' }}" alt="{{ product.title }}">  
+           <h4 class="rebuy-product-title">{{ product.title }}</h4>
+            <p>{{ product.description }}</p>
+            <p class="rebuy-product-price">{{ product.price | money}}</p>
+            <button class="rebuy-button"><span>Add to Basket</span></button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</div>
