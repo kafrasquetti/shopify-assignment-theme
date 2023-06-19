@@ -3,20 +3,147 @@
 {% assign product = product %}
 
 <div class="product__container">
-  <div class="product__image">
-    <img src="{{ product.images.first.src | img_url: '800x800' }}" alt="{{ product.title }}" loading="lazy">
-  </div>
-  <div class="product__info">
-    <h1>{{ product.title }}</h1>
-    <p class="product__price">{{ product.price | money }}</p>
-    <p class="product__description">{{ product.description }}</p>
-    <form action="/#" method="post">
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
-    </form>
-        {% assign product_type = product.type %}
-   
-    {% include 'upsellBlock' %}
+  <div class="product-details">
+  
+    <div class="product__image">
+ <img src="{{ product.images.first.src | img_url:"800x800" }}" alt="{{ product.title }}"/>
     
   </div>
+  
+    <div class="product__info">
+  <div class="product-header">
+    <div class="product-info-title">{{ product.title }}</div>
+{% assign maxStars = 5 %}
+{% assign currentRating = 5 %}  {% comment %} Set the current rating value {% endcomment %}
+
+{% comment %} Display the stars {% endcomment %}
+<div class="rating">
+  {% for star in (1..maxStars) %}
+    <span class="star filled"></span> 
+  {% endfor %}
+ {% comment %} Code for Review numbers {% assign reviewCount = product.reviews.size %}  {% endcomment %}
+
+  <span class="reviews-text"> 3054 Reviews</span>
+</div>
+   </div>
+  <div class="product__description">
+  {{ product.description }}</div>
+{% assign tags = product.tags | split: ',' %}
+{% for tag in tags %}
+  {% if tag contains 'code' %}
+   {% assign cleanedTag = tag | replace: '"', '' %} 
+
+<div class="product-form-subs">
+      <div class="product-form-head {{ cleanedTag }}">     
+     
+          <div class="subs-discount">
+           <span class="subs-title">Subscription</span>
+            <span class="discount"><span>30% OFF</span></span>
+          </div>
+          <div class="subs-prices">
+            <span class="real-price">£26.00</span>
+            <span class="price-discount" >£18.20</span>
+          </div>
+    
+      </div>
+
+      <div>
+        <div class="product-features">
+          
+          <ul class="list-features">
+            
+              <li class="list-items-subs">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="{{ cleanedTag }}" width="24" height="24" rx="12" ></rect>
+                  <path d="M7 12.5L10.1818 15.5L17 8.5" stroke="black" stroke-width="1.5" fill="none"></path>
+                </svg>
+                24/7 video vet support
+              </li>
+            
+              <li class="list-items-subs">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="{{ cleanedTag }}" width="24" height="24" rx="12" ></rect>
+                  <path d="M7 12.5L10.1818 15.5L17 8.5" stroke="black" stroke-width="1.5" fill="none"></path>
+                </svg>
+Health tracking and<br> recommendations
+              </li>
+              <li class="list-items-subs">
+                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="{{ cleanedTag }}" width="24" height="24" rx="12" ></rect>
+                  <path d="M7 12.5L10.1818 15.5L17 8.5" stroke="black" stroke-width="1.5" fill="none"></path>
+                </svg>
+                
+AI assistant, personalised<br>health insights and vet tips
+              </li>
+            
+          </ul>
+          <ul class="list-features">
+            
+              <li class="list-items-subs">
+                <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="{{ cleanedTag }}"  width="24" height="24" rx="12" ></rect>
+                  <path d="M7 12.5L10.1818 15.5L17 8.5" stroke="black" stroke-width="1.5" fill="none"></path>
+                </svg>
+30% off first order, <br>
+then 20% off for life
+              </li>
+            
+              <li class="list-items-subs">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="{{ cleanedTag }}"  width="24" height="24" rx="12" ></rect>
+                  <path d="M7 12.5L10.1818 15.5L17 8.5" stroke="black" stroke-width="1.5" fill="none"></path>
+                </svg>
+                
+Free delivery monthly and<br> exclusive rewards
+              </li>
+            
+              <li class="list-items-subs">
+                <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="{{ cleanedTag }}"  width="24" height="24" rx="12"></rect>
+                  <path d="M7 12.5L10.1818 15.5L17 8.5" stroke="black" stroke-width="1.5" fill="none"></path>
+                </svg>
+                100% money back guarantee
+
+              </li>
+            
+          </ul>
+          
+        </div>
+ <div class="product-subs-select">
+          <div class="items-center">
+            <div class="controls-container">
+              <button class="buy-button">
+
+                   <div class="subs-label-button">Subscribe ·&nbsp;
+                    <span class="buy-discount-price"> £18.20</span></div>
+                  
+                
+              </button>
+
+
+              
+            </div>
+             <div class="additional-info">
+            After first order you will pay £23.40/month. <br>
+Cancel, pause or change anytime.
+          </div>
+          </div>
+
+         
+        </div>
+       
+      </div>
+    </div>
+
+  {% endif %}
+{% endfor %}
+
+  </div>
+
+  
+  </div>
+      
+    {% assign product_type = product.type %}
+    {% include 'upsellBlock' %}
+    
 </div>
