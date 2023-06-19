@@ -1,22 +1,32 @@
 {% assign upsell_limit = 3 %}
 {% assign upsell_count = 0 %}
 {% assign upsell_products = collections.all.products %}
-<h3 class="primary-title">Frequently bought together</h3>
-<div class="product-row">
-  {% for product in upsell_products %}
-    {% if upsell_count < upsell_limit %}
-      {% for tag in product.tags %}
-        {% if tag contains product_type %}
-          {% assign upsell_count = upsell_count | plus: 1 %}
-          <div class="product-item">
-          <img src="{{ product.featured_image | img_url: 'small' }}" alt="{{ product.title }}">  
-           <h4 class="rebuy-product-title">{{ product.title }}</h4>
-            <p>{{ product.description }}</p>
-            <p class="rebuy-product-price">{{ product.price | money}}</p>
-            <button class="rebuy-button"><span>Add to Basket</span></button>
-          </div>
+<div class="upsell-block">
+  <div class="upsell-container">
+    <div class="upsell-block-title">Frequently bought together</div>
+    <div class="upsell-product-row">
+      {% for product in upsell_products %}
+        {% if upsell_count < upsell_limit %}
+          {% for tag in product.tags %}
+            {% if tag contains product_type %}
+              {% assign upsell_count = upsell_count | plus: 1 %}
+               <a href="{{ product.url }}">
+              <div class="upsell-product-item">
+                <div class="upsell-image">
+                 
+                    <img src="{{ product.featured_image | img_url: '178x178' }}" alt="{{ product.title }}">  
+                 
+                </div>
+                <div class="upsell-product-details">
+                <div class="upsell-product-title">{{ product.title }}</div>   
+                <div class="upsell-product-price">{{ product.price | money }}</div>
+                </div>
+                </div>
+                  </a>
+            {% endif %}
+          {% endfor %}
         {% endif %}
       {% endfor %}
-    {% endif %}
-  {% endfor %}
+    </div>
+  </div>
 </div>
